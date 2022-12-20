@@ -1,0 +1,21 @@
+public class MainActivity extends AppCompatActivity {
+    ActivityMainBinding binding;
+    ArrayList arrayList;
+    AdapterClass adapter;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding=ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        arrayList=new ArrayList<ModelClass>();
+
+        arrayList.add(new ModelClass(R.drawable.mouse_one,"one"));
+        arrayList.add(new ModelClass(R.drawable.mouse_two,"two"));
+        arrayList.add(new ModelClass(R.drawable.mouse_three,"three"));
+
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new AdapterClass(this,arrayList);
+        binding.recyclerView.setAdapter(adapter);
+    }
+}

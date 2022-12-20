@@ -1,0 +1,31 @@
+public class AdapterClass extends RecyclerView.Adapter<AdapterClass.viewHolder> {
+    Context context;
+    ArrayList<ModelClass> arrayList;
+
+    public AdapterClass(Context context, ArrayList<ModelClass> arrayList) {
+        this.context = context;
+        this.arrayList = arrayList;
+    }
+    @NonNull
+    @Override
+    public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        RowBinding binding=RowBinding.inflate(LayoutInflater.from(context),parent,false);
+        return new viewHolder(binding);
+    }
+    @Override
+    public void onBindViewHolder(@NonNull viewHolder holder, int position) {
+        holder.binding.imageView.setImageResource(arrayList.get(position).img);
+        holder.binding.textView.setText(arrayList.get(position).txt);
+    }
+    @Override
+    public int getItemCount() {
+        return arrayList.size();
+    }
+    public class viewHolder extends RecyclerView.ViewHolder {
+        RowBinding binding;
+        public viewHolder(@NonNull RowBinding rowBinding) {
+            super(rowBinding.getRoot());
+            binding=rowBinding;
+        }
+    }
+}
